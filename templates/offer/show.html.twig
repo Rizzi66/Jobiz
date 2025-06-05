@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}{{ offer.title }}{% endblock %}
+
+
+{% block body %}
+<section class="text-gray-400 bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto flex flex-wrap">
+            <div class="flex flex-wrap -mx-4 lg:w-1/2 sm:w-2/3 content-between">
+                <div class="w-full sm:p-4 px-4 mb-6">
+                    <h1 class="title-font font-medium text-xl mb-2 text-white">{{ offer.title }}</h1>
+                    <div class="leading-relaxed">
+                        {{ offer.description|raw }}
+                    </div>
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.company.name }}</h2>
+                    <p class="leading-relaxed">Entreprise</p>
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.jobType.name }}</h2>
+                    <p class="leading-relaxed">Type</p>
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.city }}</h2>
+                    <p class="leading-relaxed">Ville</p>
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.country }}</h2>
+                    <p class="leading-relaxed">Pays</p>
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.remoteAllowed }}</h2>
+                    <p class="leading-relaxed">Poste en remote</p>
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.salaryMin }} € - {{ offer.salaryMax }} €</h2>
+                    <p class="leading-relaxed">Salaire</p>
+                </div>
+                <div class="p-4">
+                    <h2 class="title-font font-medium text-xl text-white pb-2">Catégories</h2>
+                    {% for category in offer.jobCategories %}
+                    <a class="bg-gray-700 text-blue-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-blue-900 dark:text-blue-300 hover:bg-blue-500 hover:text-white" href="#">{{ category.name }}</a>
+                    {% endfor %}
+                </div>
+                <div class="p-4 sm:w-1/2 lg:w-1/4 w-1/2">
+                    <h2 class="title-font font-medium text-3xl text-white">{{ offer.createdAt|date('Y') }}</h2>
+                    <p class="leading-relaxed">Date d'ajout</p>
+                </div>
+
+            </div>
+    </div>
+</section>
+{% endblock %}
