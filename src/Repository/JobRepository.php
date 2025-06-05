@@ -15,6 +15,24 @@ class JobRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Job::class);
     }
+    public function findByFilters(?string $category, ?string $country)
+{
+    $qb = $this->createQueryBuilder('j');
+
+    if ($category) {
+        // Effectuer une jointure avec jobCategories (relation ManyToMany)
+        $qb->innerJoin('j.jobCategories', 'c')  // jointure avec jobCategories
+           ->andWhere('c.name = :category')     // Filtrage sur le nom de la catÃ©gorie
+           ->setParameter('category', $category);
+    }
+
+    if ($country) {
+        $qb->andWhere('j.country = :country')
+           ->setParameter('country', $country);
+    }
+
+    return $qb->getQuery()->getResult();
+}
 
 //    /**
 //     * @return Job[] Returns an array of Job objects

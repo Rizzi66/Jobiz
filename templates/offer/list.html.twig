@@ -5,6 +5,22 @@
 
 
 {% block body %}
+    <!-- Formulaire de filtre -->
+    <form method="get" class="mb-4">
+        <div class="flex flex-wrap space-x-4">
+            <div class="flex-1">
+                <label for="category" class="block text-sm font-medium text-gray-700">Catégorie</label>
+                <input type="text" name="category" id="category" class="mt-1 block w-full" value="{{ app.request.get('category') }}">
+            </div>
+            <div class="flex-1">
+                <label for="country" class="block text-sm font-medium text-gray-700">Pays</label>
+                <input type="text" name="country" id="country" class="mt-1 block w-full" value="{{ app.request.get('country') }}">
+            </div>
+            <div class="flex items-end">
+                <button type="submit" class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-md">Filtrer</button>
+            </div>
+        </div>
+    </form>
 <section class="text-gray-400 bg-gray-900 body-font container px-5 py-14 mx-auto">
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
